@@ -1,0 +1,6 @@
+name: Paintball
+author: Michael Nichol
+version: 1.15.2
+api-version: 1.13
+main: me.nichol.Paintball.Paintball
+description: First Bukkit plugin, a paintball minigame
