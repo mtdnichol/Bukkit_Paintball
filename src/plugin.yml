@@ -4,3 +4,8 @@ version: 1.15.2
 api-version: 1.13
 main: me.nichol.Paintball.Paintball
 description: First Bukkit plugin, a paintball minigame
+
+commands:
+  test:
+    description: Gives a player a single item of the argument passed
+    usage: /<command>
