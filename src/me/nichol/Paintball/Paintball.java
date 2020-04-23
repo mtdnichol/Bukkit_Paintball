@@ -1,6 +1,8 @@
 package me.nichol.Paintball;
 
-import me.nichol.Paintball.Events.GrenadeBomb;
+import me.nichol.Paintball.Items.GrenadeBomb;
+import me.nichol.Paintball.Items.HEGrenade;
+import me.nichol.Paintball.Items.ImpactGrenade;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -15,7 +17,8 @@ public class Paintball extends JavaPlugin {
         this.getCommand(commands.cmd1).setExecutor(commands);
 
         //Events
-        getServer().getPluginManager().registerEvents(new GrenadeBomb(), this);
+        getServer().getPluginManager().registerEvents(new HEGrenade(), this);
+        getServer().getPluginManager().registerEvents(new ImpactGrenade(), this);
 
         loadConfig();
     }
@@ -33,7 +36,6 @@ public class Paintball extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-
             }
         }.run();
     }
