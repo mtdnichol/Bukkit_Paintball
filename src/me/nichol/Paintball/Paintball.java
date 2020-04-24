@@ -1,5 +1,6 @@
 package me.nichol.Paintball;
 
+import me.nichol.Paintball.Events.playerHit;
 import me.nichol.Paintball.Items.GrenadeBomb;
 import me.nichol.Paintball.Items.HEGrenade;
 import me.nichol.Paintball.Items.ImpactGrenade;
@@ -19,6 +20,7 @@ public class Paintball extends JavaPlugin {
         //Events
         getServer().getPluginManager().registerEvents(new HEGrenade(), this);
         getServer().getPluginManager().registerEvents(new ImpactGrenade(), this);
+        getServer().getPluginManager().registerEvents(new playerHit(), this);
 
         loadConfig();
     }

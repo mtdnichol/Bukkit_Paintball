@@ -3,8 +3,10 @@ package me.nichol.Paintball.Items;
 import me.nichol.Paintball.Paintball;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.data.type.Snow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -13,11 +15,15 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class GrenadeBomb extends SuperWeapon implements Listener {
     private Paintball plugin = Paintball.getPlugin(Paintball.class);
+    Random rand = new Random();
 
 
     @EventHandler
@@ -35,6 +41,8 @@ public abstract class GrenadeBomb extends SuperWeapon implements Listener {
                 item.setAmount(item.getAmount() - 1);
                 Entity drop = ploc.getWorld().dropItemNaturally(ploc, getItem());
                 drop.setVelocity(ploc.getDirection().multiply(1.2));
+
+
 
                 new BukkitRunnable() {
                     @Override
@@ -76,17 +84,13 @@ public abstract class GrenadeBomb extends SuperWeapon implements Listener {
     abstract double getDamage();
 
     private void explodeGrenade(Location gloc, int fragments) {
-        ItemStack itemFragment = new ItemStack(Material.SNOWBALL, 1);
-
-
         for (int i = 0; i < fragments; i++) {
-            //Figure out how to generate random pitch and yaw
+            Snowball ball = gloc.getWorld().spawn(gloc, Snowball.class);
 
-            Entity fragment = gloc.getWorld().dropItemNaturally(gloc, itemFragment);
-//            gloc.setDirection()
-//            gloc.setPitch();
-//            gloc.setYaw();
-            fragment.setVelocity(gloc.getDirection().multiply(1));
+            gloc.setPitch(rand.nextInt(180) + 180);
+            gloc.setYaw(rand.nextInt(180) + 180);
+
+            ball.setVelocity(gloc.getDirection().multiply(1));
         }
     }
 }
